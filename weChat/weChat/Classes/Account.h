@@ -10,8 +10,10 @@
 
 @interface Account : NSObject
 
-@property (nonatomic, strong) NSString *user;
-@property (nonatomic, strong) NSString *pwd;
+@property (nonatomic, strong) NSString *loginUser;
+@property (nonatomic, strong) NSString *loginPwd;
+@property (nonatomic, strong) NSString *registerUser;
+@property (nonatomic, strong) NSString *registerPwd;
 
 /** 判断用户是否登陆 */
 @property(nonatomic,assign,getter=isLogin)BOOL login;

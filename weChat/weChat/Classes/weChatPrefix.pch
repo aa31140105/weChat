@@ -1,0 +1,19 @@
+//
+//  weChatPrefix.pch
+//  weChat
+//
+//  Created by 天佑 on 16/3/25.
+//  Copyright © 2016年 天佑. All rights reserved.
+//
+
+#ifndef weChatPrefix_pch
+#define weChatPrefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import "Account.h"
+#import "XMPPTool.h"
+
+#endif /* weChatPrefix_pch */

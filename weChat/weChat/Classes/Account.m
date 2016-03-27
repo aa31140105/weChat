@@ -31,8 +31,8 @@
             
             /** 从沙盒获取上次的用户登陆信息 */
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            account.user = [defaults objectForKey:kUserKey];
-            account.pwd = [defaults objectForKey:kPwdKey];
+            account.loginUser = [defaults objectForKey:kUserKey];
+            account.loginPwd = [defaults objectForKey:kPwdKey];
             account.login = [defaults boolForKey:kLoginKey];
             
         }
@@ -46,8 +46,8 @@
     
     /** 保存user pwd login */
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.user forKey:kUserKey];
-    [defaults setObject:self.pwd forKey:kPwdKey];
+    [defaults setObject:self.loginUser forKey:kUserKey];
+    [defaults setObject:self.loginPwd forKey:kPwdKey];
     [defaults setBool:self.isLogin forKey:kLoginKey];
     [defaults synchronize];
 

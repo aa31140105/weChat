@@ -41,14 +41,15 @@
 //    [defaults setObject:self.passwordTextField.text forKey:@"password"];
 //    [defaults synchronize];
 
-    [Account shareAccount].user = self.accountTextField.text;
-    [Account shareAccount].pwd = self.passwordTextField.text;
+    [Account shareAccount].loginUser = self.accountTextField.text;
+    [Account shareAccount].loginPwd = self.passwordTextField.text;
     [Account shareAccount].login = YES;
     
+    /** 当前是登陆操作 */
+    [XMPPTool shareXMPPTool].loginSuccess = YES;
     /** 利用block回调知道appdelegate的登陆结果 */
     __weak typeof (self) selVc = self;
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    [app xmppLogin:^(XMPPResultType resultType) {
+    [[XMPPTool shareXMPPTool] xmppLogin:^(XMPPResultType resultType) {
         
         if (resultType == XMPPResultTypeLoginSuccess) {
             NSLog(@"登陆成功咯!");
