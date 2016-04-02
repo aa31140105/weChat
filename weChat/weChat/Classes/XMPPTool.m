@@ -21,10 +21,35 @@
 /** 电子头像模块 */
 @property (nonatomic, strong) XMPPvCardAvatarModule *vavatar;
 
+
+
 @end
 
 @implementation XMPPTool
 SingleM(XMPPTool)
+
+/** 释放资源 */
+- (void)teardownStream{
+    
+    //移除代理
+    [_xmppStream removeDelegate:self];
+    
+    //取消模块
+    [_vavatar deactivate];
+    [_vCard deactivate];
+    [_roster deactivate];
+    
+    //断开连接
+    [_xmppStream disconnect];
+    
+    //清空资源
+    _vCardStorage = nil;
+    _vCard = nil;
+    _vavatar = nil;
+    _xmppStream = nil;
+    _roster = nil;
+    _rosterStorage = nil;
+}
 
 /** 初始化XMPPStream */
 - (void)setupStream{
@@ -36,15 +61,22 @@ SingleM(XMPPTool)
     
     /** 添加XMPP模块 */
 //    1.添加电子名片模板
-    self.vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
-    self.vCard = [[XMPPvCardTempModule alloc]initWithvCardStorage:self.vCardStorage];
+    _vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    _vCard = [[XMPPvCardTempModule alloc]initWithvCardStorage:self.vCardStorage];
     
     /** 激活 */
     [self.vCard activate:_xmppStream]; 
     
+    //添加的模块的sqlite数据在这个路径下
+//    /Users/tianyou/Library/Developer/CoreSimulator/Devices/6528499D-20CE-444D-8B51-DE897541E9E0/data/Containers/Data/Application/D12D2697-6712-4B2C-A86A-F290168EE2AA/Library/Application Support
     /** 电子头像模块 */
-    self.vavatar = [[XMPPvCardAvatarModule alloc]initWithvCardTempModule:self.vCard];
-    [self.vavatar activate:_xmppStream] ;
+    _vavatar = [[XMPPvCardAvatarModule alloc]initWithvCardTempModule:self.vCard];
+    [_vavatar activate:_xmppStream] ;
+    
+    /** 添加花名册模块 */
+    _rosterStorage = [[XMPPRosterCoreDataStorage alloc]init];
+    _roster = [[XMPPRoster alloc]initWithRosterStorage:_rosterStorage];
+    [_roster activate:_xmppStream];
     
     //设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];
@@ -219,5 +251,10 @@ SingleM(XMPPTool)
 /** 与服务器断开连接 */
 - (void)disConnect{
     [_xmppStream disconnect];
+}
+
+- (void)dealloc{
+    //释放资源
+    [self teardownStream];
 }
 @end

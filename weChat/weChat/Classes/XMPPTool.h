@@ -41,4 +41,9 @@ SingleH(XMPPTool)
 /** 电子名片数据 */
 @property (nonatomic, strong) XMPPvCardCoreDataStorage *vCardStorage;
 
+/** 花名册 */
+@property (nonatomic, strong) XMPPRoster *roster;
+/** 花名册数据 */
+@property (nonatomic, strong) XMPPRosterCoreDataStorage *rosterStorage;
+
 @end

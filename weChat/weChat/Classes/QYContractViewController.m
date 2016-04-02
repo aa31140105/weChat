@@ -1,0 +1,120 @@
+//
+//  QYContractViewController.m
+//  weChat
+//
+//  Created by 天佑 on 16/4/2.
+//  Copyright © 2016年 天佑. All rights reserved.
+//
+
+#import "QYContractViewController.h"
+
+@interface QYContractViewController ()<NSFetchedResultsControllerDelegate>
+
+/** 好友数组 */
+@property (nonatomic, strong) NSArray *users;
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchRC;
+@end
+
+@implementation QYContractViewController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self loadContract];
+    [self loadStatus];
+}
+
+//观察数据库数据改变的请求
+- (void)loadStatus{
+    
+    /** 显示好友数据(数据在XMPPRoster.sqlite文件) */
+    //1.上下文,关联XMPPRoster.sqlite文件
+    NSManagedObjectContext *rosterContext = [XMPPTool shareXMPPTool].rosterStorage.mainThreadManagedObjectContext;
+    
+    
+    //2.request请求查询那张表
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
+    
+    //设置排序
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+    request.sortDescriptors = @[sort];
+    
+    //3.执行请求,创建结果控制器
+    //如果数据库数据很多,那么会在子线程中执行
+    _fetchRC = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:rosterContext sectionNameKeyPath:nil cacheName:nil];
+    _fetchRC.delegate = self;
+    NSError *error = nil;
+    [_fetchRC performFetch:&error];
+    QYLog(@"%@",_fetchRC.fetchedObjects);
+}
+
+#pragma mark - 结果控制器的代理方法,监听数据库内容改变
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    
+    //刷新表格
+    [self.tableView reloadData];
+}
+/** 加载好友数据 */
+- (void)loadContract{
+   
+    /** 显示好友数据(数据在XMPPRoster.sqlite文件) */
+    //1.上下文,关联XMPPRoster.sqlite文件
+    NSManagedObjectContext *rosterContext = [XMPPTool shareXMPPTool].rosterStorage.mainThreadManagedObjectContext;
+    
+    
+    //2.request请求查询那张表
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"XMPPUserCoreDataStorageObject"];
+    
+    //设置排序
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+    request.sortDescriptors = @[sort];
+    
+    //3.执行请求
+    NSError *error = nil;
+    NSArray *users = [rosterContext executeFetchRequest:request error:&error];
+    self.users = users;
+ 
+}
+
+#pragma mark - tableView数据源方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return self.users.count;
+    return _fetchRC.fetchedObjects.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *ID = @"ContactCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    //获取对应的好友
+//    XMPPUserCoreDataStorageObject *user = self.users[indexPath.row];
+    XMPPUserCoreDataStorageObject *user = _fetchRC.fetchedObjects[indexPath.row];
+    
+//    //kvo监听用户状态改变
+//    [user addObserver:self forKeyPath:@"sectionNum" options:NSKeyValueObservingOptionNew context:nil];
+    
+    //标识用户是否在线(sectionNum的值,0表示在线,1是离开,2是离线)
+    switch ([user.sectionNum integerValue]) {
+        case 0:
+            cell.detailTextLabel.text = @"在线";
+            break;
+            case 1:
+            cell.detailTextLabel.text = @"离开";
+            break;
+            case 2:
+            cell.detailTextLabel.text = @"离线";
+            break;
+        default:
+            QYLog(@"未知状态");
+            break;
+    }
+    
+    cell.textLabel.text = user.displayName;
+    return cell;
+}
+
+////KVO监听用户状态改变实现方法
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+//    [self.tableView reloadData];
+//}
+@end

@@ -167,6 +167,7 @@
 		0C3C2BF11CA8447D007B3721 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEC1CA8447D007B3721 /* SVProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		0C3C2BF21CA8447D007B3721 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */; settings = {ASSET_TAGS = (); }; };
 		0C5928031CAFF14C006B0AF9 /* QYEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0C5928081CB01D6E006B0AF9 /* QYContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0C5929521CAFC51D00CEA029 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5929511CAFC51D00CEA029 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0CF724831CA67F66005EBF99 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF724821CA67F66005EBF99 /* Account.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -500,6 +501,8 @@
 		0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		0C5928011CAFF14C006B0AF9 /* QYEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYEditorViewController.h; sourceTree = "<group>"; };
 		0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYEditorViewController.m; sourceTree = "<group>"; };
+		0C5928061CB01D6E006B0AF9 /* QYContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYContractViewController.h; sourceTree = "<group>"; };
+		0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYContractViewController.m; sourceTree = "<group>"; };
 		0C5929501CAFC51D00CEA029 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		0C5929511CAFC51D00CEA029 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		0CF724811CA67F66005EBF99 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
@@ -563,7 +566,9 @@
 		0C0C10121CA5395A00809511 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0CF7247F1CA67EFE005EBF99 /* Main */,
+				0C3C2BD91CA84202007B3721 /* Main.storyboard */,
+				0C5928041CB01D2C006B0AF9 /* Contract */,
+				0CF7247F1CA67EFE005EBF99 /* Me */,
 				0C0C121F1CA5658C00809511 /* Login */,
 				0C65A38E1CAD5EFD00F0CA25 /* Other */,
 				0C0C10131CA5395A00809511 /* Lib */,
@@ -863,13 +868,13 @@
 				0C3C2A7E1CA840A2007B3721 /* GoogleSharedStatus */,
 				0C3C2A811CA840A2007B3721 /* ProcessOne */,
 				0C3C2A841CA840A2007B3721 /* Reconnect */,
-				0C3C2A871CA840A2007B3721 /* Roster */,
+				0C3C2A871CA840A2007B3721 /* Roster(好友列表在这里) */,
 				0C3C2A9F1CA840A2007B3721 /* SystemInputActivityMonitor */,
 				0C3C2AA21CA840A2007B3721 /* XEP-0009 */,
 				0C3C2AA91CA840A2007B3721 /* XEP-0012 */,
 				0C3C2AAE1CA840A2007B3721 /* XEP-0016 */,
 				0C3C2AB11CA840A2007B3721 /* XEP-0045 */,
-				0C3C2AD51CA840A2007B3721 /* XEP-0054 */,
+				0C3C2AD51CA840A2007B3721 /* XEP-0054(电子名片在这里) */,
 				0C3C2AF11CA840A2007B3721 /* XEP-0059 */,
 				0C3C2AF61CA840A2007B3721 /* XEP-0060 */,
 				0C3C2AFB1CA840A2007B3721 /* XEP-0065 */,
@@ -961,7 +966,7 @@
 			path = Reconnect;
 			sourceTree = "<group>";
 		};
-		0C3C2A871CA840A2007B3721 /* Roster */ = {
+		0C3C2A871CA840A2007B3721 /* Roster(好友列表在这里) */ = {
 			isa = PBXGroup;
 			children = (
 				0C3C2A881CA840A2007B3721 /* CoreDataStorage */,
@@ -972,6 +977,7 @@
 				0C3C2A9D1CA840A2007B3721 /* XMPPRosterPrivate.h */,
 				0C3C2A9E1CA840A2007B3721 /* XMPPUser.h */,
 			);
+			name = "Roster(好友列表在这里)";
 			path = Roster;
 			sourceTree = "<group>";
 		};
@@ -1108,7 +1114,7 @@
 			path = MemoryStorage;
 			sourceTree = "<group>";
 		};
-		0C3C2AD51CA840A2007B3721 /* XEP-0054 */ = {
+		0C3C2AD51CA840A2007B3721 /* XEP-0054(电子名片在这里) */ = {
 			isa = PBXGroup;
 			children = (
 				0C3C2AD61CA840A2007B3721 /* CoreDataStorage */,
@@ -1129,6 +1135,7 @@
 				0C3C2AEF1CA840A2007B3721 /* XMPPvCardTempTel.h */,
 				0C3C2AF01CA840A2007B3721 /* XMPPvCardTempTel.m */,
 			);
+			name = "XEP-0054(电子名片在这里)";
 			path = "XEP-0054";
 			sourceTree = "<group>";
 		};
@@ -1484,6 +1491,23 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		0C5928041CB01D2C006B0AF9 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				0C5928051CB01D4F006B0AF9 /* Controller */,
+			);
+			name = Contract;
+			sourceTree = "<group>";
+		};
+		0C5928051CB01D4F006B0AF9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0C5928061CB01D6E006B0AF9 /* QYContractViewController.h */,
+				0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		0C65A38D1CAD5EE700F0CA25 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1511,14 +1535,13 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		0CF7247F1CA67EFE005EBF99 /* Main */ = {
+		0CF7247F1CA67EFE005EBF99 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				0C3C2BD91CA84202007B3721 /* Main.storyboard */,
 				0C65A38D1CAD5EE700F0CA25 /* Controller */,
 				0CF724801CA67F1F005EBF99 /* Model */,
 			);
-			name = Main;
+			name = Me;
 			sourceTree = "<group>";
 		};
 		0CF724801CA67F1F005EBF99 /* Model */ = {
@@ -1612,6 +1635,7 @@
 				0C3C2B851CA840A2007B3721 /* XMPPIQ+LastActivity.m in Sources */,
 				0C3C2B8D1CA840A2007B3721 /* XMPPRoomHybridStorage.m in Sources */,
 				0C3C2B911CA840A2007B3721 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				0C5928081CB01D6E006B0AF9 /* QYContractViewController.m in Sources */,
 				0C3C2BF11CA8447D007B3721 /* SVProgressHUD.m in Sources */,
 				0C3C2A6E1CA8409A007B3721 /* XMPPTimer.m in Sources */,
 				0C3C2BC31CA840A2007B3721 /* XMPPStreamManagementStanzas.m in Sources */,
