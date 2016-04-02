@@ -166,14 +166,15 @@
 		0C3C2BF01CA8447D007B3721 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEA1CA8447D007B3721 /* SVProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		0C3C2BF11CA8447D007B3721 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEC1CA8447D007B3721 /* SVProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		0C3C2BF21CA8447D007B3721 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */; settings = {ASSET_TAGS = (); }; };
+		0C5929521CAFC51D00CEA029 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5929511CAFC51D00CEA029 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0CF724831CA67F66005EBF99 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF724821CA67F66005EBF99 /* Account.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C0C0FF81CA5374400809511 /* weChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C0C0FFC1CA5374400809511 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0C0C0FFE1CA5374400809511 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0C0C0FFF1CA5374400809511 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0C0C0FFE1CA5374400809511 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		0C0C0FFF1CA5374400809511 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		0C0C10011CA5374400809511 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0C0C10021CA5374400809511 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0C0C10071CA5374400809511 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,7 +182,7 @@
 		0C0C100C1CA5374400809511 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C0C10481CA53A3C00809511 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		0C0C10B31CA53B6F00809511 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		0C0C121B1CA53C1300809511 /* weChatPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatPrefix.pch; sourceTree = "<group>"; };
+		0C0C121B1CA53C1300809511 /* weChatPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weChatPrefix.pch; path = ../weChatPrefix.pch; sourceTree = "<group>"; };
 		0C3C29D51CA84082007B3721 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		0C3C29D61CA84082007B3721 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		0C3C29D81CA84082007B3721 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
@@ -496,6 +497,8 @@
 		0C3C2BEC1CA8447D007B3721 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0C3C2BED1CA8447D007B3721 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		0C5929501CAFC51D00CEA029 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0C5929511CAFC51D00CEA029 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		0CF724811CA67F66005EBF99 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0CF724821CA67F66005EBF99 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -536,10 +539,6 @@
 			isa = PBXGroup;
 			children = (
 				0C0C10121CA5395A00809511 /* Classes */,
-				0C0C0FFE1CA5374400809511 /* AppDelegate.h */,
-				0C0C0FFF1CA5374400809511 /* AppDelegate.m */,
-				0C0C10011CA5374400809511 /* ViewController.h */,
-				0C0C10021CA5374400809511 /* ViewController.m */,
 				0C0C10071CA5374400809511 /* Assets.xcassets */,
 				0C0C10091CA5374400809511 /* LaunchScreen.storyboard */,
 				0C3C2BD91CA84202007B3721 /* Main.storyboard */,
@@ -552,8 +551,9 @@
 		0C0C0FFB1CA5374400809511 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C0C10011CA5374400809511 /* ViewController.h */,
+				0C0C10021CA5374400809511 /* ViewController.m */,
 				0C0C0FFC1CA5374400809511 /* main.m */,
-				0C0C121B1CA53C1300809511 /* weChatPrefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -563,6 +563,7 @@
 			children = (
 				0CF7247F1CA67EFE005EBF99 /* Main */,
 				0C0C121F1CA5658C00809511 /* Login */,
+				0C65A38E1CAD5EFD00F0CA25 /* Other */,
 				0C0C10131CA5395A00809511 /* Lib */,
 			);
 			path = Classes;
@@ -1481,16 +1482,36 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		0C65A38D1CAD5EE700F0CA25 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0C3C2BDB1CA8421A007B3721 /* QYMeTableViewController.h */,
+				0C3C2BDC1CA8421A007B3721 /* QYMeTableViewController.m */,
+				0C5929501CAFC51D00CEA029 /* ProfileViewController.h */,
+				0C5929511CAFC51D00CEA029 /* ProfileViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0C65A38E1CAD5EFD00F0CA25 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				0C0C121B1CA53C1300809511 /* weChatPrefix.pch */,
+				0C3C2BD81CA84196007B3721 /* Single.h */,
+				0C0C0FFE1CA5374400809511 /* AppDelegate.h */,
+				0C0C0FFF1CA5374400809511 /* AppDelegate.m */,
+				0C3C2BD51CA84145007B3721 /* XMPPTool.h */,
+				0C3C2BD61CA84145007B3721 /* XMPPTool.m */,
+				0C3C2BE61CA842D0007B3721 /* weChatPrefix.pch */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		0CF7247F1CA67EFE005EBF99 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C65A38D1CAD5EE700F0CA25 /* Controller */,
 				0CF724801CA67F1F005EBF99 /* Model */,
-				0C3C2BD51CA84145007B3721 /* XMPPTool.h */,
-				0C3C2BD61CA84145007B3721 /* XMPPTool.m */,
-				0C3C2BD81CA84196007B3721 /* Single.h */,
-				0C3C2BDB1CA8421A007B3721 /* QYMeTableViewController.h */,
-				0C3C2BDC1CA8421A007B3721 /* QYMeTableViewController.m */,
-				0C3C2BE61CA842D0007B3721 /* weChatPrefix.pch */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1624,6 +1645,7 @@
 				0C3C2BC61CA840A2007B3721 /* XMPPPing.m in Sources */,
 				0C3C2B7C1CA840A2007B3721 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				0C3C2A671CA8409A007B3721 /* XMPPStream.m in Sources */,
+				0C5929521CAFC51D00CEA029 /* ProfileViewController.m in Sources */,
 				0C3C2B8A1CA840A2007B3721 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				0C3C2BB91CA840A2007B3721 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				0C3C2A5F1CA8409A007B3721 /* XMPPConstants.m in Sources */,

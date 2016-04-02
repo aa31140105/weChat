@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Single.h"
+#import "XMPPFramework.h"
 
 typedef enum {
     XMPPResultTypeLoginSuccess,//登陆成功的枚举
@@ -33,5 +34,11 @@ SingleH(XMPPTool)
 
 /** 判断用户的操作是注册还是登陆,1是登陆,0是注册 */
 @property(nonatomic,assign,getter=isLoginSuccess)BOOL loginSuccess;
+
+/** 电子名片模块 */
+@property (nonatomic, strong) XMPPvCardTempModule *vCard;
+
+/** 电子名片数据 */
+@property (nonatomic, strong) XMPPvCardCoreDataStorage *vCardStorage;
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "XMPPFramework.h"
-
+#import "DDTTYLogger.h"
+#import "DDLog.h"
 
 
 @implementation AppDelegate
@@ -16,14 +16,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    /** 配置XMPP的日志的启动 */
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    
     /** 判断用户是否登陆 */
     if ([Account shareAccount].isLogin) {
-        NSString *str = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-        NSLog(@"%@",str);
+
         /** 来到主界面 */
         id mainVc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
         self.window.rootViewController = mainVc;
         
+        //刚进程序的时候自动登陆选择yes
+        [XMPPTool shareXMPPTool].loginSuccess = YES;
         /** 自动登陆 */
         [[XMPPTool shareXMPPTool] xmppLogin:nil];
     }

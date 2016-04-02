@@ -16,4 +16,14 @@
 #import "Account.h"
 #import "XMPPTool.h"
 
+
+//自定义日志
+#ifdef DEBUG
+//#define  WCLog(...) NSLog(__VA_ARGS__)
+#define QYLog(...) NSLog(@"%s\n %@ \n\n",__func__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+
+#endif
+
+
 #endif /* weChatPrefix_pch */

@@ -7,7 +7,6 @@
 //
 
 #import "XMPPTool.h"
-#import "XMPPFramework.h"
 
 @interface XMPPTool ()<XMPPStreamDelegate>
 
@@ -16,6 +15,12 @@
 
 /** 登陆的回调结果 */
 @property (nonatomic, strong) XMPPResultBlock resultBlock;
+
+
+
+/** 电子头像模块 */
+@property (nonatomic, strong) XMPPvCardAvatarModule *vavatar;
+
 @end
 
 @implementation XMPPTool
@@ -24,8 +29,22 @@ SingleM(XMPPTool)
 /** 初始化XMPPStream */
 - (void)setupStream{
     
+    NSString *str = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    NSLog(@"%@",str);
     /** 创建XMPPStream对象 */
     _xmppStream = [[XMPPStream alloc]init];
+    
+    /** 添加XMPP模块 */
+//    1.添加电子名片模板
+    self.vCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    self.vCard = [[XMPPvCardTempModule alloc]initWithvCardStorage:self.vCardStorage];
+    
+    /** 激活 */
+    [self.vCard activate:_xmppStream]; 
+    
+    /** 电子头像模块 */
+    self.vavatar = [[XMPPvCardAvatarModule alloc]initWithvCardTempModule:self.vCard];
+    [self.vavatar activate:_xmppStream] ;
     
     //设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];
@@ -42,23 +61,24 @@ SingleM(XMPPTool)
     //    NSString *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     XMPPJID *myJid = nil;
     
+    Account *account = [Account shareAccount];
     if (self.loginSuccess == YES) {
         /** 登陆操作 */
-        NSString *user = [Account shareAccount].loginUser;
-        myJid = [XMPPJID jidWithUser:user domain:@"youge.local" resource:@"iphone"];
+        NSString *user = account.loginUser;
+        myJid = [XMPPJID jidWithUser:user domain:account.domain resource:@"iphone"];
         
     }else{
         /** 注册操作 */
         NSString *registerUser = [Account shareAccount].registerUser;
-        myJid = [XMPPJID jidWithUser:registerUser domain:@"youge.local" resource:@"iphone"];
+        myJid = [XMPPJID jidWithUser:registerUser domain:account.domain resource:@"iphone"];
     }
     _xmppStream.myJID = myJid;
     
     /** 设置主机地址 */
-    _xmppStream.hostName = @"127.0.0.1";
+    _xmppStream.hostName = account.host;
     
     /** 设置主机端口号 */
-    _xmppStream.hostPort = 5222;
+    _xmppStream.hostPort = account.port;
     
     /** 发起链接 */
     NSError *error = nil;
