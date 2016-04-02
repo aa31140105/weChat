@@ -166,6 +166,7 @@
 		0C3C2BF01CA8447D007B3721 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEA1CA8447D007B3721 /* SVProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		0C3C2BF11CA8447D007B3721 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEC1CA8447D007B3721 /* SVProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		0C3C2BF21CA8447D007B3721 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */; settings = {ASSET_TAGS = (); }; };
+		0C5928031CAFF14C006B0AF9 /* QYEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0C5929521CAFC51D00CEA029 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5929511CAFC51D00CEA029 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0CF724831CA67F66005EBF99 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF724821CA67F66005EBF99 /* Account.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -481,7 +482,7 @@
 		0C3C2BD51CA84145007B3721 /* XMPPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPTool.h; sourceTree = "<group>"; };
 		0C3C2BD61CA84145007B3721 /* XMPPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTool.m; sourceTree = "<group>"; };
 		0C3C2BD81CA84196007B3721 /* Single.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Single.h; sourceTree = "<group>"; };
-		0C3C2BD91CA84202007B3721 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0C3C2BD91CA84202007B3721 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		0C3C2BDB1CA8421A007B3721 /* QYMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYMeTableViewController.h; sourceTree = "<group>"; };
 		0C3C2BDC1CA8421A007B3721 /* QYMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYMeTableViewController.m; sourceTree = "<group>"; };
 		0C3C2BDE1CA84275007B3721 /* QYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYLoginViewController.h; sourceTree = "<group>"; };
@@ -497,6 +498,8 @@
 		0C3C2BEC1CA8447D007B3721 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0C3C2BED1CA8447D007B3721 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		0C3C2BEE1CA8447D007B3721 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		0C5928011CAFF14C006B0AF9 /* QYEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYEditorViewController.h; sourceTree = "<group>"; };
+		0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYEditorViewController.m; sourceTree = "<group>"; };
 		0C5929501CAFC51D00CEA029 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		0C5929511CAFC51D00CEA029 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		0CF724811CA67F66005EBF99 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
@@ -541,7 +544,6 @@
 				0C0C10121CA5395A00809511 /* Classes */,
 				0C0C10071CA5374400809511 /* Assets.xcassets */,
 				0C0C10091CA5374400809511 /* LaunchScreen.storyboard */,
-				0C3C2BD91CA84202007B3721 /* Main.storyboard */,
 				0C0C100C1CA5374400809511 /* Info.plist */,
 				0C0C0FFB1CA5374400809511 /* Supporting Files */,
 			);
@@ -1489,6 +1491,8 @@
 				0C3C2BDC1CA8421A007B3721 /* QYMeTableViewController.m */,
 				0C5929501CAFC51D00CEA029 /* ProfileViewController.h */,
 				0C5929511CAFC51D00CEA029 /* ProfileViewController.m */,
+				0C5928011CAFF14C006B0AF9 /* QYEditorViewController.h */,
+				0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1510,6 +1514,7 @@
 		0CF7247F1CA67EFE005EBF99 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0C3C2BD91CA84202007B3721 /* Main.storyboard */,
 				0C65A38D1CAD5EE700F0CA25 /* Controller */,
 				0CF724801CA67F1F005EBF99 /* Model */,
 			);
@@ -1651,6 +1656,7 @@
 				0C3C2A5F1CA8409A007B3721 /* XMPPConstants.m in Sources */,
 				0C3C2BD01CA840A2007B3721 /* XMPPMessage+XEP_0308.m in Sources */,
 				0C3C29EB1CA84082007B3721 /* GCDAsyncSocket.m in Sources */,
+				0C5928031CAFF14C006B0AF9 /* QYEditorViewController.m in Sources */,
 				0C3C2B761CA840A2007B3721 /* XMPPProcessOne.m in Sources */,
 				0C3C2BA41CA840A2007B3721 /* XMPPResultSet.m in Sources */,
 				0C3C2A541CA8409A007B3721 /* XMPPAnonymousAuthentication.m in Sources */,
