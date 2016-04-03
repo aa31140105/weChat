@@ -169,6 +169,8 @@
 		0C5928031CAFF14C006B0AF9 /* QYEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5928021CAFF14C006B0AF9 /* QYEditorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0C5928081CB01D6E006B0AF9 /* QYContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0C5929521CAFC51D00CEA029 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5929511CAFC51D00CEA029 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0C9B13DF1CB0AD6300018289 /* AddContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B13DE1CB0AD6300018289 /* AddContractViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0C9B13E21CB0C4C500018289 /* QYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9B13E11CB0C4C500018289 /* QYChatViewController.m */; settings = {ASSET_TAGS = (); }; };
 		0CF724831CA67F66005EBF99 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF724821CA67F66005EBF99 /* Account.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -505,6 +507,10 @@
 		0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYContractViewController.m; sourceTree = "<group>"; };
 		0C5929501CAFC51D00CEA029 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		0C5929511CAFC51D00CEA029 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		0C9B13DD1CB0AD6300018289 /* AddContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContractViewController.h; sourceTree = "<group>"; };
+		0C9B13DE1CB0AD6300018289 /* AddContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContractViewController.m; sourceTree = "<group>"; };
+		0C9B13E01CB0C4C500018289 /* QYChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYChatViewController.h; sourceTree = "<group>"; };
+		0C9B13E11CB0C4C500018289 /* QYChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYChatViewController.m; sourceTree = "<group>"; };
 		0CF724811CA67F66005EBF99 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		0CF724821CA67F66005EBF99 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -886,7 +892,7 @@
 				0C3C2B111CA840A2007B3721 /* XEP-0100 */,
 				0C3C2B141CA840A2007B3721 /* XEP-0106 */,
 				0C3C2B171CA840A2007B3721 /* XEP-0115 */,
-				0C3C2B221CA840A2007B3721 /* XEP-0136 */,
+				0C3C2B221CA840A2007B3721 /* XEP-0136(消息模块) */,
 				0C3C2B2E1CA840A2007B3721 /* XEP-0147 */,
 				0C3C2B311CA840A2007B3721 /* XEP-0153 */,
 				0C3C2B341CA840A2007B3721 /* XEP-0172 */,
@@ -1277,13 +1283,14 @@
 			path = CoreDataStorage;
 			sourceTree = "<group>";
 		};
-		0C3C2B221CA840A2007B3721 /* XEP-0136 */ = {
+		0C3C2B221CA840A2007B3721 /* XEP-0136(消息模块) */ = {
 			isa = PBXGroup;
 			children = (
 				0C3C2B231CA840A2007B3721 /* CoreDataStorage */,
 				0C3C2B2C1CA840A2007B3721 /* XMPPMessageArchiving.h */,
 				0C3C2B2D1CA840A2007B3721 /* XMPPMessageArchiving.m */,
 			);
+			name = "XEP-0136(消息模块)";
 			path = "XEP-0136";
 			sourceTree = "<group>";
 		};
@@ -1504,6 +1511,10 @@
 			children = (
 				0C5928061CB01D6E006B0AF9 /* QYContractViewController.h */,
 				0C5928071CB01D6E006B0AF9 /* QYContractViewController.m */,
+				0C9B13DD1CB0AD6300018289 /* AddContractViewController.h */,
+				0C9B13DE1CB0AD6300018289 /* AddContractViewController.m */,
+				0C9B13E01CB0C4C500018289 /* QYChatViewController.h */,
+				0C9B13E11CB0C4C500018289 /* QYChatViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1652,6 +1663,7 @@
 				0C3C29F21CA84082007B3721 /* DDDispatchQueueLogFormatter.m in Sources */,
 				0C3C2B871CA840A2007B3721 /* XMPPPrivacy.m in Sources */,
 				0C3C2BBB1CA840A2007B3721 /* XMPPURI.m in Sources */,
+				0C9B13E21CB0C4C500018289 /* QYChatViewController.m in Sources */,
 				0C3C2B781CA840A2007B3721 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				0C3C2B881CA840A2007B3721 /* XMPPRoom.xcdatamodeld in Sources */,
 				0C3C2A081CA8408C007B3721 /* DDXMLDocument.m in Sources */,
@@ -1766,6 +1778,7 @@
 				0C3C29F11CA84082007B3721 /* DDContextFilterLogFormatter.m in Sources */,
 				0C3C2B8F1CA840A2007B3721 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				0C3C2BC71CA840A2007B3721 /* XMPPAutoTime.m in Sources */,
+				0C9B13DF1CB0AD6300018289 /* AddContractViewController.m in Sources */,
 				0C3C2BBD1CA840A2007B3721 /* XMPPMessage+XEP_0172.m in Sources */,
 				0C3C2BCB1CA840A2007B3721 /* XMPPAttentionModule.m in Sources */,
 				0C3C2A551CA8409A007B3721 /* XMPPDeprecatedDigestAuthentication.m in Sources */,

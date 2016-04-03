@@ -32,18 +32,29 @@ SingleH(XMPPTool)
 /** 声明注册方法 */
 - (void)xmppRegister:(XMPPResultBlock)resultBlock;
 
+
+/** 与服务器交互的核心类 */
+@property (nonatomic, strong,readonly) XMPPStream *xmppStream;
+
 /** 判断用户的操作是注册还是登陆,1是登陆,0是注册 */
 @property(nonatomic,assign,getter=isLoginSuccess)BOOL loginSuccess;
 
 /** 电子名片模块 */
-@property (nonatomic, strong) XMPPvCardTempModule *vCard;
+@property (nonatomic, strong,readonly) XMPPvCardTempModule *vCard;
+
+/** 电子头像模块 */
+@property (nonatomic, strong,readonly) XMPPvCardAvatarModule *vavatar;
 
 /** 电子名片数据 */
-@property (nonatomic, strong) XMPPvCardCoreDataStorage *vCardStorage;
+@property (nonatomic, strong,readonly) XMPPvCardCoreDataStorage *vCardStorage;
 
 /** 花名册 */
-@property (nonatomic, strong) XMPPRoster *roster;
+@property (nonatomic, strong,readonly) XMPPRoster *roster;
 /** 花名册数据 */
-@property (nonatomic, strong) XMPPRosterCoreDataStorage *rosterStorage;
+@property (nonatomic, strong,readonly) XMPPRosterCoreDataStorage *rosterStorage;
+
+/** 消息模块 */
+@property (nonatomic, strong) XMPPMessageArchiving *msgArchiving;
+@property (nonatomic, strong) XMPPMessageArchivingCoreDataStorage *msgArchivingStorage;
 
 @end

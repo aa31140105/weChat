@@ -10,18 +10,12 @@
 
 @interface XMPPTool ()<XMPPStreamDelegate>
 
-/** 与服务器交互的核心类 */
-@property (nonatomic, strong) XMPPStream *xmppStream;
 
 /** 登陆的回调结果 */
 @property (nonatomic, strong) XMPPResultBlock resultBlock;
 
-
-
-/** 电子头像模块 */
-@property (nonatomic, strong) XMPPvCardAvatarModule *vavatar;
-
-
+/** xmpp自动重新连接模块 */
+@property (nonatomic, strong) XMPPReconnect *reconnect;
 
 @end
 
@@ -38,6 +32,8 @@ SingleM(XMPPTool)
     [_vavatar deactivate];
     [_vCard deactivate];
     [_roster deactivate];
+    [_msgArchiving deactivate];
+    [_reconnect deactivate];
     
     //断开连接
     [_xmppStream disconnect];
@@ -49,6 +45,9 @@ SingleM(XMPPTool)
     _xmppStream = nil;
     _roster = nil;
     _rosterStorage = nil;
+    _msgArchiving = nil;
+    _msgArchivingStorage = nil;
+    _reconnect = nil;
 }
 
 /** 初始化XMPPStream */
@@ -77,6 +76,15 @@ SingleM(XMPPTool)
     _rosterStorage = [[XMPPRosterCoreDataStorage alloc]init];
     _roster = [[XMPPRoster alloc]initWithRosterStorage:_rosterStorage];
     [_roster activate:_xmppStream];
+    
+    /** 添加消息模块 */
+    _msgArchivingStorage = [[XMPPMessageArchivingCoreDataStorage alloc]init];
+    _msgArchiving = [[XMPPMessageArchiving alloc]initWithMessageArchivingStorage:_msgArchivingStorage];
+    [_msgArchiving activate:_xmppStream];
+    
+    /** 添加自动连接模块 */
+    _reconnect = [[XMPPReconnect alloc]init];
+    [_reconnect activate:_xmppStream];
     
     //设置代理
     [_xmppStream addDelegate:self delegateQueue:dispatch_get_global_queue(0, 0)];

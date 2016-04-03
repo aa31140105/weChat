@@ -7,6 +7,7 @@
 //
 
 #import "QYContractViewController.h"
+#import "QYChatViewController.h"
 
 @interface QYContractViewController ()<NSFetchedResultsControllerDelegate>
 
@@ -22,6 +23,7 @@
     
     [self loadContract];
     [self loadStatus];
+    [self.tableView reloadData];
 }
 
 //观察数据库数据改变的请求
@@ -38,6 +40,11 @@
     //设置排序
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
     request.sortDescriptors = @[sort];
+    
+    /** 过滤请求 */
+//    NSPredicate *pre = [NSPredicate predicateWithFormat:@"subscription != %@ AND subscription != %@ AND subscription != %@" ,@"none",@"to",@"from"];
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"subscription = %@",@"both"];
+    request.predicate = pre;
     
     //3.执行请求,创建结果控制器
     //如果数据库数据很多,那么会在子线程中执行
@@ -82,6 +89,30 @@
     return _fetchRC.fetchedObjects.count;
 }
 
+
+#pragma mark - delete的代理方法
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //拿到要删除的好友
+    XMPPUserCoreDataStorageObject *user = _fetchRC.fetchedObjects[indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //删除好友
+        [[XMPPTool shareXMPPTool].roster removeUser:user.jid];
+    }
+    /* 删除好友后不需要刷新表格,因为数据库信息改变会调用
+    controllerDidChangeContent:(NSFetchedResultsController *)controller
+    这个方法刷新表格
+     */
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //获取当前点击的cell,拿到正在聊天的好友,通过prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender方法把好友传到聊天控制器去
+    XMPPJID *friendJid = [_fetchRC.fetchedObjects[indexPath.row] jid];
+    
+    [self performSegueWithIdentifier:@"seguaToChat" sender:friendJid];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ID = @"ContactCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -110,6 +141,18 @@
     }
     
     cell.textLabel.text = user.displayName;
+    
+    /** 显示好友的头像 */
+    if (user.photo) {//默认情况下,不是程序一启动就有图片的
+        cell.imageView.image = user.photo;
+    }else{
+        //从数据库获取头像
+      NSData *data = [[XMPPTool shareXMPPTool].vavatar photoDataForJID:user.jid];
+        cell.imageView.image = [UIImage imageWithData:data];
+        
+    }
+    
+    
     return cell;
 }
 
@@ -117,4 +160,15 @@
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
 //    [self.tableView reloadData];
 //}
+
+
+//把正在聊天的好友传到下一个控制器
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    id destVc = segue.destinationViewController;
+    if ([destVc isKindOfClass:[QYChatViewController class]]) {
+        QYChatViewController *chatVc = destVc;
+        chatVc.friendJid = sender;
+    }
+}
 @end

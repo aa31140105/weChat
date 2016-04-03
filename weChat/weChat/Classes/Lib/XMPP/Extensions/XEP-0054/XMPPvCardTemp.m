@@ -315,17 +315,52 @@ NSString *const kXMPPvCardTempElement = @"vCard";
 - (void)clearLabels { }
 
 
-- (NSArray *)telecomsAddresses { return nil; }
+- (NSArray *)telecomsAddresses {
+
+    return nil;
+}
 - (void)addTelecomsAddress:(XMPPvCardTempTel *)tel { }
 - (void)removeTelecomsAddress:(XMPPvCardTempTel *)tel { }
 - (void)setTelecomsAddresses:(NSArray *)tels { }
 - (void)clearTelecomsAddresses { }
 
 
-- (NSArray *)emailAddresses { return nil; }
+- (NSArray *)emailAddresses {
+    //获取email的节点
+   NSXMLElement *emailEle = [self elementForName:@"EMAIL"];
+    
+    //获取email的子节点
+    NSXMLElement *useridEle = [emailEle elementForName:@"USERID"];
+    
+    //获取邮箱
+    NSString *email = [useridEle stringValue];
+
+#warning 只返回USERID的邮箱
+    if (email.length > 0) {
+        return @[email];
+    }
+    return nil;
+}
 - (void)addEmailAddress:(XMPPvCardTempEmail *)email { }
 - (void)removeEmailAddress:(XMPPvCardTempEmail *)email { }
-- (void)setEmailAddresses:(NSArray *)emails { }
+- (void)setEmailAddresses:(NSArray *)emails {
+#warning 修改过这里
+    //邮箱数组只能为1
+    NSAssert(emails.count == 1, @"邮箱数组只能为1");
+    
+    //获取email的节点
+    NSXMLElement *emailEle = [self elementForName:@"EMAIL"];
+    
+    //删除UserID节点
+    [emailEle removeElementForName:@"USERID"];
+    
+    //添加回节点
+    NSXMLElement *useridEle = [NSXMLElement elementWithName:@"USERID" stringValue:emails[0]];
+    
+    //把USERID添加到email节点下
+    [emailEle addChild:useridEle];
+    
+}
 - (void)clearEmailAddresses { }
 
 

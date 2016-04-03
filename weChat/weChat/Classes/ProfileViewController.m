@@ -27,6 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //获取个人信息
+    [self getMaterial];
+}
+
+
+/** 获取个人数据 */
+- (void)getMaterial{
+    
     //为什么电子名片的模型是temp,因为解析电子名片的xml没有完善,有些节点并未解析
     //1.内部查找数据
     XMPPvCardTemp *myvCard = [XMPPTool shareXMPPTool].vCard.myvCardTemp;
@@ -34,7 +42,7 @@
     //获取头像
     if (myvCard.photo) {
         self.iconImageView.image = [UIImage imageWithData:myvCard.photo];
-    } 
+    }
     
     //微信号
     self.chatAccount.text = [Account shareAccount].loginUser;
@@ -52,12 +60,11 @@
     //电话
     self.phone.text = myvCard.note;
     //邮件
-//    self.exmail.text = myvCard.emailAddresses;
-    self.exmail.text = myvCard.mailer;
-    
-    
+    NSArray *emails = myvCard.emailAddresses;
+    if (emails.count > 0) {
+        self.exmail.text = emails[0];
+    }
 }
-
 
 #pragma mark - tableView的代理方法
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -166,7 +173,9 @@
     /** 电话 */
     myVCard.note = self.phone.text;
     /** 邮件 */
-    myVCard.mailer = self.exmail.text;
+    if (self.exmail.text.length > 0) {
+        myVCard.emailAddresses = @[self.exmail.text];
+    }
     
     /** 把数据保存到服务器 */
     //内部实现把电子名片上传了一次,包括图片

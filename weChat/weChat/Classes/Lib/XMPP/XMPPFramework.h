@@ -28,14 +28,19 @@
 /** xmpp电子头像模块 */
 #import "XMPPvCardAvatarModule.h"
 
+//消息模块
+#import "XMPPMessageArchiving.h"
+#import "XMPPMessageArchivingCoreDataStorage.h"
+
 // List the modules you're using here:
 // (the following may not be a complete list)
 
 //#import "XMPPBandwidthMonitor.h"
 //
 //#import "XMPPCoreDataStorage.h"
-//
-//#import "XMPPReconnect.h"
+//断网又联网后重新连接服务器
+#import "XMPPReconnect.h"
+
 //花名册模块
 #import "XMPPRoster.h"
 #import "XMPPRosterCoreDataStorage.h"
