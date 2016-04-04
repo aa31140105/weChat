@@ -120,6 +120,7 @@
     //获取对应的好友
 //    XMPPUserCoreDataStorageObject *user = self.users[indexPath.row];
     XMPPUserCoreDataStorageObject *user = _fetchRC.fetchedObjects[indexPath.row];
+
     
 //    //kvo监听用户状态改变
 //    [user addObserver:self forKeyPath:@"sectionNum" options:NSKeyValueObservingOptionNew context:nil];

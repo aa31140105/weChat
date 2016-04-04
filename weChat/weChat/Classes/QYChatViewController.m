@@ -7,6 +7,10 @@
 //
 
 #import "QYChatViewController.h"
+#import "myChatCell.h"
+
+
+#import "QYTool.h"
 
 @interface QYChatViewController ()<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -22,19 +26,26 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 
-
 @end
 
 @implementation QYChatViewController
-
+static NSString *ID = @"myChatCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     /** 键盘的监听 */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kbWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    //注册cell
+    [self.tableView registerClass:[myChatCell class] forCellReuseIdentifier:ID];
+    
+    [self loadData];
 
- //加载数据库的数据
+}
+
+- (void)loadData{
+    
+    //加载数据库的数据
     
     //1.上下文
     NSManagedObjectContext *msgContext = [XMPPTool shareXMPPTool].msgArchivingStorage.mainThreadManagedObjectContext;
@@ -57,7 +68,6 @@
     
     NSError *error = nil;
     [_resultController performFetch:&error];
-
 }
 
 /** 图片发送 */
@@ -125,43 +135,69 @@
     return _resultController.fetchedObjects.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+   //适配cell的高度
+    XMPPMessageArchiving_Message_CoreDataObject *msgObj = _resultController.fetchedObjects[indexPath.row];
+    UILabel *label = [QYTool labelWithFont:[UIFont systemFontOfSize:18] width:200 text:msgObj.body];
+    if (label.frame.size.height > 80) {
+        return label.frame.size.height+60;
+    }else{
+        return 80;
+    }
+
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *ID = @"chatCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    myChatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
     
     //获取聊天信息
     XMPPMessageArchiving_Message_CoreDataObject *msgObj = _resultController.fetchedObjects[indexPath.row];
     
+    cell.mySelf = !msgObj.thread.length > 0;
+   
+    
+    cell.myText = msgObj.body;
     //判断消息类型有没有附件
 //    1.获取原始的xml数据
     XMPPMessage *message = msgObj.message;
     
+    /** 可以根据msgObj的thread是否有值判断是好友发来的信息还是自己发出去的信息,有值说明是好友发来的信息 */
+//    NSLog(@"%@,,,%@",msgObj.body,msgObj.thread);
+    
     //获取附件的类型
     NSString *bodyType = [message attributeStringValueForName:@"bodyType"];
     if ([bodyType isEqualToString:@"image"]) {
-            //遍历message的子节点
-        NSArray *child = message.children;
-        for (XMPPElement *note in child) {
-            //获取节点的名字
-            if ([[note name] isEqualToString:@"attachment"]) {
-                
-                //获取附件的字符串,然后转换成NSData,然后转换成图片
-                NSString *imageBase64Str = [note stringValue];
-                NSData *imageData = [[NSData alloc]initWithBase64EncodedString:imageBase64Str options:0];
-                UIImage *image = [UIImage imageWithData:imageData];
-                cell.imageView.image = image;
-                
-            }
-        }
-        //清除循环引用
-//        cell.textLabel.text = nil;
+//            //遍历message的子节点
+//        NSArray *child = message.children;
+//        for (XMPPElement *note in child) {
+//            //获取节点的名字
+//            if ([[note name] isEqualToString:@"attachment"]) {
+//                
+//                //获取附件的字符串,然后转换成NSData,然后转换成图片
+//                NSString *imageBase64Str = [note stringValue];
+//                NSData *imageData = [[NSData alloc]initWithBase64EncodedString:imageBase64Str options:0];
+//                UIImage *image = [UIImage imageWithData:imageData];
+////                cell.chatImage.image = image;
+//                
+//                
+//            }
+//        }
+//        //清除循环引用
+//        cell.chatLabel.text = nil;
     }else if([bodyType isEqualToString:@"sound"]){
         
-    }else{//纯文本
-        cell.textLabel.text = msgObj.body;
-        
-//        cell.imageView.image = nil;
+    }else {//纯文本
+//
+        /** 获取好友和自己的头像的data数据 */
+        NSData *imageData = [[XMPPTool shareXMPPTool].vavatar photoDataForJID:self.friendJid];
+        NSData *myImageData = [[XMPPTool shareXMPPTool].vavatar photoDataForJID:[XMPPTool shareXMPPTool].xmppStream.myJID];
+        if (msgObj.thread.length > 0) {
+            
+            cell.iconImage.image = [UIImage imageWithData:imageData];
+        }else {
+            cell.iconImage.image = [UIImage imageWithData:myImageData];
+        }
     }
 
     return cell;
@@ -198,4 +234,45 @@
     
     return YES;
 }
+
+
+//------------------------------
+//泡泡文本
+//- (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position{
+//    
+//    //计算大小
+//    UIFont *font = [UIFont systemFontOfSize:14];
+//    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(180.0f, 20000.0f) lineBreakMode:NSLineBreakByWordWrapping];
+//    
+//    // build single chat bubble cell with given text
+//    UIView *returnView = [[UIView alloc] initWithFrame:CGRectZero];
+//    returnView.backgroundColor = [UIColor clearColor];
+//    
+//    //背影图片
+//    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"SenderAppNodeBkg_HL":@"ReceiverTextNodeBkg" ofType:@"png"]];
+//    
+//    UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:floorf(bubble.size.width/2) topCapHeight:floorf(bubble.size.height/2)]];
+//    NSLog(@"%f,%f",size.width,size.height);
+//    
+//    
+//    //添加文本信息
+//    UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?15.0f:22.0f, 20.0f, size.width+10, size.height+10)];
+//    bubbleText.backgroundColor = [UIColor clearColor];
+//    bubbleText.font = font;
+//    bubbleText.numberOfLines = 0;
+//    bubbleText.lineBreakMode = NSLineBreakByWordWrapping;
+//    bubbleText.text = text;
+//    
+//    bubbleImageView.frame = CGRectMake(0.0f, 14.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
+//    
+//    if(fromSelf)
+//        returnView.frame = CGRectMake(320-position-(bubbleText.frame.size.width+30.0f), 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+//    else
+//        returnView.frame = CGRectMake(position, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+//    
+//    [returnView addSubview:bubbleImageView];
+//    [returnView addSubview:bubbleText];
+//    
+//    return returnView;
+//}
 @end

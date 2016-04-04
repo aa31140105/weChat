@@ -15,7 +15,8 @@
 #import <UIKit/UIKit.h>
 #import "Account.h"
 #import "XMPPTool.h"
-
+#define QYScreenW [UIScreen mainScreen].bounds.size.width
+#define QYScreenH [UIScreen mainScreen].bounds.size.height
 
 //自定义日志
 #ifdef DEBUG

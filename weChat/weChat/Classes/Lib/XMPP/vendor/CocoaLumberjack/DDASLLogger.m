@@ -84,7 +84,7 @@ static DDASLLogger *sharedInstance;
             case LOG_FLAG_ERROR : aslLogLevel = ASL_LEVEL_ALERT;   break;
             case LOG_FLAG_WARN  : aslLogLevel = ASL_LEVEL_CRIT;    break;
             case LOG_FLAG_INFO  : aslLogLevel = ASL_LEVEL_ERR;     break;
-            case LOG_FLAG_DEBUG : aslLogLevel = ASL_LEVEL_WARNING; break;
+//            case LOG_FLAG_DEBUG : aslLogLevel = ASL_LEVEL_WARNING; break;4
             default             : aslLogLevel = ASL_LEVEL_NOTICE;  break;
         }
         
