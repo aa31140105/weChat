@@ -168,23 +168,23 @@ static NSString *ID = @"myChatCell";
     //获取附件的类型
     NSString *bodyType = [message attributeStringValueForName:@"bodyType"];
     if ([bodyType isEqualToString:@"image"]) {
-//            //遍历message的子节点
-//        NSArray *child = message.children;
-//        for (XMPPElement *note in child) {
-//            //获取节点的名字
-//            if ([[note name] isEqualToString:@"attachment"]) {
-//                
-//                //获取附件的字符串,然后转换成NSData,然后转换成图片
-//                NSString *imageBase64Str = [note stringValue];
-//                NSData *imageData = [[NSData alloc]initWithBase64EncodedString:imageBase64Str options:0];
-//                UIImage *image = [UIImage imageWithData:imageData];
-////                cell.chatImage.image = image;
-//                
-//                
-//            }
-//        }
-//        //清除循环引用
-//        cell.chatLabel.text = nil;
+            //遍历message的子节点
+        NSArray *child = message.children;
+        for (XMPPElement *note in child) {
+            //获取节点的名字
+            if ([[note name] isEqualToString:@"attachment"]) {
+                
+                //获取附件的字符串,然后转换成NSData,然后转换成图片
+                NSString *imageBase64Str = [note stringValue];
+                NSData *imageData = [[NSData alloc]initWithBase64EncodedString:imageBase64Str options:0];
+                UIImage *image = [UIImage imageWithData:imageData];
+//                cell.chatImage.image = image;
+                
+                
+            }
+        }
+        //清除循环引用
+        cell.chatLabel.text = nil;
     }else if([bodyType isEqualToString:@"sound"]){
         
     }else {//纯文本
@@ -236,43 +236,5 @@ static NSString *ID = @"myChatCell";
 }
 
 
-//------------------------------
-//泡泡文本
-//- (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position{
-//    
-//    //计算大小
-//    UIFont *font = [UIFont systemFontOfSize:14];
-//    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(180.0f, 20000.0f) lineBreakMode:NSLineBreakByWordWrapping];
-//    
-//    // build single chat bubble cell with given text
-//    UIView *returnView = [[UIView alloc] initWithFrame:CGRectZero];
-//    returnView.backgroundColor = [UIColor clearColor];
-//    
-//    //背影图片
-//    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"SenderAppNodeBkg_HL":@"ReceiverTextNodeBkg" ofType:@"png"]];
-//    
-//    UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:floorf(bubble.size.width/2) topCapHeight:floorf(bubble.size.height/2)]];
-//    NSLog(@"%f,%f",size.width,size.height);
-//    
-//    
-//    //添加文本信息
-//    UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?15.0f:22.0f, 20.0f, size.width+10, size.height+10)];
-//    bubbleText.backgroundColor = [UIColor clearColor];
-//    bubbleText.font = font;
-//    bubbleText.numberOfLines = 0;
-//    bubbleText.lineBreakMode = NSLineBreakByWordWrapping;
-//    bubbleText.text = text;
-//    
-//    bubbleImageView.frame = CGRectMake(0.0f, 14.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
-//    
-//    if(fromSelf)
-//        returnView.frame = CGRectMake(320-position-(bubbleText.frame.size.width+30.0f), 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
-//    else
-//        returnView.frame = CGRectMake(position, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
-//    
-//    [returnView addSubview:bubbleImageView];
-//    [returnView addSubview:bubbleText];
-//    
-//    return returnView;
-//}
+
 @end

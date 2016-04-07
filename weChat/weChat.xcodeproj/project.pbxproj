@@ -1999,6 +1999,7 @@
 				GCC_PREFIX_HEADER = weChat/Classes/weChatPrefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = weChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2008,6 +2009,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qyL.weChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2019,6 +2021,7 @@
 				GCC_PREFIX_HEADER = weChat/Classes/weChatPrefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = weChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2028,6 +2031,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qyL.weChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
