@@ -16,7 +16,7 @@ static NSString *domain = @"youge.local";
 static NSString *host = @"127.0.0.1";
 static int port = 5222;
 
-@implementation Account//
+@implementation Account
 
 +(instancetype)shareAccount{
 
